@@ -2389,6 +2389,12 @@ fieldset {
 }
 /* end @media (min-width: 768px) desktop layout */
 
+#view-main.view--hidden .mobile-topbar,
+#view-main.view--hidden .detail-panel,
+#view-main.view--hidden .sidebar {
+  display: none;
+}
+
 /* Sembunyikan di desktop */
 .mobile-topbar {
   display: none;
