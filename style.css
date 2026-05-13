@@ -1,0 +1,2531 @@
+
+:root, [data-theme="light"] {
+  --color-bg: #f7f6f2;
+  --color-surface: #f9f8f5;
+  --color-surface-2: #fbfbf9;
+  --color-surface-offset: #f3f0ec;
+  --color-surface-offset-2: #edeae5;
+  --color-surface-dynamic: #e6e4df;
+  --color-divider: #dcd9d5;
+  --color-border: #d4d1ca;
+
+  --color-text: #28251d;
+  --color-text-muted: #7a7974;
+  --color-text-faint: #bab9b4;
+  --color-text-inverse: #f9f8f4;
+
+  --color-primary: #01696f;
+  --color-primary-hover: #0c4e54;
+  --color-primary-active: #0f3638;
+  --color-primary-highlight: #cedcd8;
+
+  --color-warning: #964219;
+  --color-warning-hover: #713417;
+  --color-warning-active: #4b2614;
+  --color-warning-highlight: #ddcfc6;
+
+  --color-error: #a12c7b;
+  --color-error-hover: #7d1e5e;
+  --color-error-active: #561740;
+  --color-error-highlight: #e0ced7;
+
+  --color-success: #437a22;
+  --color-success-hover: #2e5c10;
+  --color-success-active: #1e3f0a;
+  --color-success-highlight: #d4dfcc;
+
+  --color-blue: #006494;
+  --color-blue-hover: #0b5177;
+  --color-blue-active: #0b3751;
+  --color-blue-highlight: #c6d8e4;
+
+  --color-orange: #da7101;
+  --color-orange-hover: #c55700;
+  --color-orange-active: #ac3e00;
+  --color-orange-highlight: #e7d7c4;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+  --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+
+  --content-narrow: 640px;
+  --content-default: 960px;
+  --content-wide: 1200px;
+  --content-full: 100%;
+
+  --font-body: 'Satoshi', 'Inter', sans-serif;
+  --font-display: 'Satoshi', 'Inter', sans-serif;
+
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+}
+
+[data-theme="dark"] {
+  --color-bg: #171614;
+  --color-surface: #1c1b19;
+  --color-surface-2: #201f1d;
+  --color-surface-offset: #1d1c1a;
+  --color-surface-offset-2: #22211f;
+  --color-surface-dynamic: #2d2c2a;
+  --color-divider: #262523;
+  --color-border: #393836;
+
+  --color-text: #cdccca;
+  --color-text-muted: #797876;
+  --color-text-faint: #5a5957;
+  --color-text-inverse: #2b2a28;
+
+  --color-primary: #4f98a3;
+  --color-primary-hover: #227f8b;
+  --color-primary-active: #1a626b;
+  --color-primary-highlight: #313b3b;
+
+  --color-warning: #bb653b;
+  --color-warning-hover: #b95525;
+  --color-warning-active: #993d10;
+  --color-warning-highlight: #564942;
+
+  --color-error: #d163a7;
+  --color-error-hover: #b9478f;
+  --color-error-active: #9b2f76;
+  --color-error-highlight: #4c3d46;
+
+  --color-success: #6daa45;
+  --color-success-hover: #4d8f25;
+  --color-success-active: #387015;
+  --color-success-highlight: #3a4435;
+
+  --color-blue: #5591c7;
+  --color-blue-hover: #3b78ab;
+  --color-blue-active: #275f8e;
+  --color-blue-highlight: #3a4550;
+
+  --color-orange: #fdab43;
+  --color-orange-hover: #fec47e;
+  --color-orange-active: #fdd1a4;
+  --color-orange-highlight: #564b3e;
+
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg: #171614;
+    --color-surface: #1c1b19;
+    --color-surface-2: #201f1d;
+    --color-surface-offset: #1d1c1a;
+    --color-surface-offset-2: #22211f;
+    --color-surface-dynamic: #2d2c2a;
+    --color-divider: #262523;
+    --color-border: #393836;
+    --color-text: #cdccca;
+    --color-text-muted: #797876;
+    --color-text-faint: #5a5957;
+    --color-text-inverse: #2b2a28;
+    --color-primary: #4f98a3;
+    --color-primary-hover: #227f8b;
+    --color-primary-active: #1a626b;
+    --color-primary-highlight: #313b3b;
+    --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.2);
+    --shadow-md: 0 4px 12px oklch(0 0 0 / 0.3);
+    --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4);
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100dvh;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+a, button, input, textarea, select {
+  transition:
+    color var(--transition-interactive),
+    background-color var(--transition-interactive),
+    border-color var(--transition-interactive),
+    box-shadow var(--transition-interactive),
+    opacity var(--transition-interactive),
+    transform var(--transition-interactive);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-primary) 25%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.view {
+  min-height: 100dvh;
+}
+
+#view-main {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.view--hidden {
+  display: none !important;
+}
+
+.unlock-container {
+  width: min(100% - 2rem, 28rem);
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: var(--space-8) 0;
+}
+
+.unlock-logo,
+.topbar-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text);
+}
+
+.unlock-logo {
+  justify-content: center;
+}
+
+.unlock-logo-text,
+.topbar-logo-text {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.unlock-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  text-align: center;
+}
+
+.unlock-subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  max-width: 34ch;
+  margin: -0.75rem auto 0;
+}
+
+.unlock-file-section,
+.file-status {
+  display: flex;
+  align-items: center;
+}
+
+.unlock-file-section {
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid color-mix(in oklab, var(--color-text) 12%, transparent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.file-status {
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+  min-width: 0;
+}
+
+.file-status span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-group {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.form-row {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.form-label,
+.form-legend {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 0 var(--space-2);
+  margin-left: calc(-1 * var(--space-2));
+  margin-top: calc(1 * var(--space-2));
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.form-hint {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.required {
+  color: var(--color-error);
+}
+
+.form-input {
+  width: 100%;
+  min-height: 2.875rem;
+  padding: 0.75rem 0.875rem;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in oklab, var(--color-text) 12%, transparent);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: inset 0 1px 1px color-mix(in oklab, var(--color-text) 3%, transparent);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--color-text-faint);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-primary) 14%, transparent);
+  outline: none;
+}
+
+
+.form-textarea {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+.input-password-wrapper,
+.search-wrapper,
+.copyable,
+.credential-field-value,
+.settings-actions,
+.section-title-row,
+.detail-header,
+.detail-header-actions,
+.access-card-header,
+.customer-item,
+.topbar,
+.topbar-left,
+.topbar-right,
+.sidebar-footer,
+.modal-header,
+.modal-footer,
+.credential-card-header,
+.credential-card-label-row,
+.credential-card-actions,
+.settings-info-row,
+.access-detail-row,
+.access-type-label,
+.access-type-option,
+.password-strength,
+.access-notes,
+.credential-notes,
+.detail-empty,
+.sidebar-empty,
+.credential-empty,
+.search-wrapper,
+.unlock-divider {
+  display: flex;
+  align-items: center;
+}
+
+.input-password-wrapper,
+.search-wrapper {
+  position: relative;
+}
+
+.input-password-wrapper .form-input {
+  padding-right: 3rem;
+}
+
+.btn-reveal,
+.btn-copy,
+.btn-clear-search,
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-reveal {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+}
+
+.btn-reveal:hover,
+.btn-copy:hover,
+.btn-icon:hover,
+.btn-clear-search:hover {
+  background: color-mix(in oklab, var(--color-text) 6%, transparent);
+  color: var(--color-text);
+}
+
+/* ── Form error: hanya ambil space saat ada isi ── */
+.form-error {
+  display: block;
+  min-height: 0;
+  overflow: hidden;
+  font-size: var(--text-xs);
+  color: var(--color-error);
+  margin-top: var(--space-1);
+  /* Collapse saat kosong */
+  &:empty {
+    margin-top: 0;
+  }
+}
+
+.form-error:not(:empty) {
+  animation: slideDown 150ms ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.password-strength {
+  gap: var(--space-3);
+}
+
+.password-strength-bar {
+  flex: 1;
+  height: 0.5rem;
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.password-strength-fill {
+  width: 0;
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: inherit;
+}
+
+.password-strength-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  min-height: 2.875rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  color: var(--color-text-inverse);
+  background: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-primary:active {
+  background: var(--color-primary-active);
+}
+
+.btn-secondary {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-color: color-mix(in oklab, var(--color-text) 12%, transparent);
+}
+
+.btn-secondary:hover,
+.btn-ghost:hover {
+  background: var(--color-surface-offset);
+}
+
+.btn-ghost {
+  color: var(--color-text);
+  background: transparent;
+  border-color: color-mix(in oklab, var(--color-text) 10%, transparent);
+}
+
+.btn-danger {
+  color: white;
+  background: var(--color-error);
+}
+
+.btn-danger:hover {
+  background: var(--color-error-hover);
+}
+
+.btn-sm {
+  min-height: 2.25rem;
+  padding: 0.5rem 0.875rem;
+  font-size: var(--text-xs);
+  border-radius: var(--radius-md);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+}
+
+.btn-icon.btn-sm,
+.btn-copy.btn-sm {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+}
+.btn-reveal.btn-sm {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.btn-icon--danger:hover {
+  color: var(--color-error);
+  background: color-mix(in oklab, var(--color-error) 14%, transparent);
+}
+
+.unlock-divider {
+  gap: var(--space-4);
+  justify-content: center;
+  color: var(--color-text-faint);
+  font-size: var(--text-sm);
+}
+
+.unlock-divider::before,
+.unlock-divider::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: var(--color-divider);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  justify-content: space-between;
+  min-height: 4.25rem;
+  padding: 0 var(--space-4);
+  background: color-mix(in oklab, var(--color-bg) 88%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+}
+
+.topbar-left,
+.topbar-right,
+.detail-header-actions,
+.credential-card-actions,
+.settings-actions,
+.section-title-row,
+.access-card-header,
+.modal-footer,
+.modal-header,
+.credential-field-value,
+.copyable,
+.access-type-selector,
+.tag-list,
+.main-layout {
+  gap: var(--space-3);
+}
+
+.topbar-hamburger {
+  display: inline-flex;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.sidebar {
+  position: fixed;
+  inset: 4.25rem auto 0 0;
+  width: min(88vw, 20rem);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-surface-2);
+  border-right: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+  transform: translateX(-100%);
+  transition: transform var(--transition-interactive);
+  z-index: 15;
+  height: calc(100dvh - 4.25rem);
+  overflow: hidden;
+}
+
+.sidebar.is-open {
+  transform: translateX(0);
+}
+
+.sidebar-header,
+.sidebar-footer {
+  background: transparent;
+}
+
+.customer-list {
+  overflow: auto;
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding-right: var(--space-1);
+}
+
+.search-wrapper {
+  background: var(--color-surface);
+  border: 1px solid color-mix(in oklab, var(--color-text) 10%, transparent);
+  border-radius: var(--radius-lg);
+  padding-left: 2.5rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.875rem;
+  color: var(--color-text-faint);
+  pointer-events: none;
+}
+
+.search-input {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  min-height: 3rem;
+  padding-left: 0;
+}
+
+.search-input:focus {
+  box-shadow: none;
+}
+
+.btn-clear-search {
+  position: absolute;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+}
+
+.customer-item {
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  padding: 0.875rem 0.875rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  background: transparent;
+}
+
+.customer-item:hover {
+  background: var(--color-surface);
+  border-color: color-mix(in oklab, var(--color-text) 8%, transparent);
+}
+
+.customer-item[aria-current="true"] {
+  background: color-mix(in oklab, var(--color-primary) 8%, var(--color-surface));
+  border-color: color-mix(in oklab, var(--color-primary) 22%, transparent);
+}
+
+.customer-item-main {
+  min-width: 0;
+}
+
+.customer-item-name,
+.customer-item-meta {
+  display: block;
+}
+
+.customer-item-name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.customer-item-meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.access-badge-mini,
+.access-badge,
+.tag-list .tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.625rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.access-badge,
+.access-badge-mini {
+  background: color-mix(in oklab, var(--color-primary) 14%, transparent);
+  color: var(--color-primary);
+}
+
+.access-badge--jumphost {
+  background: color-mix(in oklab, var(--color-blue) 16%, transparent);
+  color: var(--color-blue);
+}
+
+.access-badge--pam {
+  background: color-mix(in oklab, var(--color-orange) 16%, transparent);
+  color: var(--color-orange);
+}
+
+.tag-list {
+  flex-wrap: wrap;
+}
+
+.tag-list .tag {
+  background: color-mix(in oklab, var(--color-text) 7%, transparent);
+  color: var(--color-text-muted);
+}
+
+.detail-panel {
+  width: 100%;
+  padding: var(--space-4);
+}
+
+.detail-empty,
+.sidebar-empty,
+.credential-empty {
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 16rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  border: 1px dashed color-mix(in oklab, var(--color-text) 12%, transparent);
+  border-radius: var(--radius-xl);
+  background: color-mix(in oklab, var(--color-surface) 75%, transparent);
+  padding: var(--space-8);
+}
+
+.detail-content {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.detail-header {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.detail-customer-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+}
+
+.detail-section {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+  box-shadow: var(--shadow-sm);
+}
+
+.section-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: var(--text-lg);
+}
+
+.section-title-row {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.access-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.access-path .access-step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.access-path .access-arrow {
+  color: var(--color-text-faint);
+}
+
+.access-details-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.access-card,
+.credential-card {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+  border: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+}
+
+.access-card-details,
+.credential-fields,
+.settings-info-grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.access-detail-row {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-text) 6%, transparent);
+  padding-bottom: var(--space-2);
+}
+
+.access-detail-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.access-detail-row dt,
+.credential-field-label,
+.settings-info-label {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.access-detail-row dd,
+.settings-info-value,
+.credential-field-text {
+  text-align: right;
+  font-weight: 500;
+}
+
+.settings-info-value--mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: var(--text-sm);
+}
+
+.copyable,
+.credential-field-value {
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+
+.access-notes,
+.credential-notes,
+.settings-hint {
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--color-primary) 7%, var(--color-surface-offset));
+  color: var(--color-text-muted);
+}
+
+.settings-hint--danger {
+  background: color-mix(in oklab, var(--color-error) 8%, var(--color-surface-offset));
+}
+
+.credential-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.credential-card-label {
+  font-size: var(--text-base);
+}
+
+.credential-card-label-row {
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.credential-fields {
+  gap: var(--space-2);
+}
+
+.credential-field-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  padding: 0.625rem 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-text) 6%, transparent);
+}
+
+.credential-field-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.credential-field-text--masked {
+  letter-spacing: 0.16em;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  background: color-mix(in oklab, black 35%, transparent);
+  z-index: 40;
+}
+
+.modal {
+  width: min(100%, 46rem);
+  max-height: min(88dvh, 60rem);
+  overflow: auto;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid color-mix(in oklab, var(--color-text) 10%, transparent);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal--sm {
+  width: min(100%, 30rem);
+}
+
+.modal-header,
+.modal-footer {
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+}
+
+.modal-footer {
+  border-bottom: 0;
+  border-top: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.modal-body {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5);
+}
+
+.modal-title,
+.settings-section-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: var(--text-lg);
+}
+
+.form-fieldset,
+.settings-section {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+  background: var(--color-surface);
+}
+
+.settings-section--danger {
+  border-color: color-mix(in oklab, var(--color-error) 22%, transparent);
+}
+
+.access-type-selector {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.access-type-option {
+  position: relative;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in oklab, var(--color-text) 10%, transparent);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.access-type-option input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.access-type-label {
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 3rem;
+  padding: 0.75rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.access-type-option:has(input:checked) {
+  border-color: color-mix(in oklab, var(--color-primary) 28%, transparent);
+  background: color-mix(in oklab, var(--color-primary) 7%, var(--color-surface));
+}
+
+.conditional-fields {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.settings-actions {
+  flex-wrap: wrap;
+}
+
+.toast-container {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+  z-index: 60;
+}
+
+.toast {
+  min-width: 16rem;
+  max-width: 22rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 768px) {
+  .main-layout {
+    grid-template-columns: 20rem minmax(0, 1fr);
+    gap: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    position: relative;
+    inset: auto;
+    width: auto;
+    height: 100%;
+    transform: none;
+    z-index: 5;
+    overflow: hidden;
+  }
+
+  .topbar-hamburger {
+    display: none;
+  }
+
+  .detail-panel {
+    padding: var(--space-6);
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  .access-details-grid {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  }
+
+  .credential-field-row {
+    grid-template-columns: 8rem minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .form-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-group--narrow {
+    max-width: 10rem;
+  }
+    #view-main .sidebar-collapsible {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    grid-template-rows: unset !important; /* reset dari portrait grid trick */
+  }
+
+  #view-main .sidebar-collapsible-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Nav (customer list) mengisi sisa ruang */
+  #view-main .sidebar-collapsible-inner .sidebar-nav {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* Footer menempel di bawah */
+  #view-main .sidebar-collapsible-inner .sidebar-footer {
+    flex-shrink: 0 !important;
+    margin-top: auto !important;
+  }
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .detail-header,
+  .section-title-row,
+  .modal-footer,
+  .unlock-file-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detail-header-actions,
+  .settings-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .detail-header-actions .btn,
+  .settings-actions .btn,
+  .modal-footer .btn {
+    flex: 1 1 auto;
+  }
+
+  .access-type-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .access-detail-row {
+    flex-direction: column;
+  }
+
+  .access-detail-row dd,
+  .settings-info-value {
+    text-align: left;
+  }
+
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100% !important;
+    width: min(85vw, 20rem) !important;
+    transform: translateX(-100%) !important;
+    z-index: 200 !important;
+    transition: transform var(--transition-interactive) !important;
+  }
+
+  .sidebar.is-open {
+    transform: translateX(0) !important;
+  }
+
+  /* Collapsible inner jadi flex column dengan batas tinggi */
+  .sidebar-collapsible-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: 50vh !important;
+    overflow: hidden !important;
+  }
+
+  /* Search & footer tidak ikut scroll — tetap fixed di posisinya */
+  .sidebar-collapsible-inner .sidebar-search {
+    flex-shrink: 0 !important;
+  }
+
+  .sidebar-collapsible-inner .sidebar-nav {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    min-height: 0 !important;
+    -webkit-overflow-scrolling: touch !important; /* smooth scroll di iOS */
+  }
+
+  .sidebar-collapsible-inner .sidebar-footer {
+    flex-shrink: 0 !important;
+  }
+
+  .detail-panel {
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
+    padding: var(--space-4);
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =============================================================
+   PHASE 5 POLISH
+   - Unsaved indicator
+   - Toast animations
+   - Copy success state
+   - Credential card hover
+   - Access badge "Device" target
+   - Skeleton / loading state
+   - Scrollbar styling
+   - Focus-within search
+   - Settings hint icon alignment
+   - Sidebar overlay backdrop (mobile)
+   - Topbar save button with dot
+   - Transition polish
+============================================================= */
+
+/* ── Unsaved indicator dot ── */
+.btn.has-changes {
+  position: relative;
+}
+.btn.has-changes::after {
+  content: '';
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--color-orange);
+  box-shadow: 0 0 0 2px var(--color-bg);
+}
+
+/* ── Topbar save button ── */
+.topbar-save {
+  position: relative;
+}
+
+/* ── Toast animation ── */
+.toast {
+  animation: toast-in 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.toast--success {
+  border-color: color-mix(in oklab, var(--color-success) 30%, transparent);
+  background: color-mix(in oklab, var(--color-success) 8%, var(--color-surface));
+}
+.toast--error {
+  border-color: color-mix(in oklab, var(--color-error) 30%, transparent);
+  background: color-mix(in oklab, var(--color-error) 8%, var(--color-surface));
+}
+.toast--info {
+  border-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
+  background: color-mix(in oklab, var(--color-primary) 6%, var(--color-surface));
+}
+
+/* ── Copy button success feedback ── */
+.btn-copy.copy-success,
+.btn-icon.copy-success {
+  color: var(--color-success);
+  background: color-mix(in oklab, var(--color-success) 12%, transparent);
+}
+
+/* ── Credential card hover elevation ── */
+.credential-card {
+  transition:
+    box-shadow var(--transition-interactive),
+    border-color var(--transition-interactive),
+    transform var(--transition-interactive);
+}
+.credential-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in oklab, var(--color-text) 14%, transparent);
+}
+
+/* ── Access path "Device" target badge ── */
+.access-badge.access-badge-target {
+  background: color-mix(in oklab, var(--color-text) 8%, transparent);
+  color: var(--color-text-muted);
+  border: 1px dashed color-mix(in oklab, var(--color-text) 18%, transparent);
+}
+
+/* ── Modal entrance animation ── */
+.modal-backdrop:not([hidden]) {
+  animation: backdrop-in 180ms ease both;
+}
+.modal-backdrop:not([hidden]) .modal {
+  animation: modal-in 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Sidebar item entrance ── */
+.customer-item {
+  animation: item-in 160ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes item-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Search wrapper focus-within ── */
+.search-wrapper:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary) 14%, transparent);
+}
+
+/* ── Scrollbar styling ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-dynamic) transparent;
+}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-dynamic);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border);
+}
+
+/* ── Sidebar mobile overlay backdrop ── */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: color-mix(in oklab, black 30%, transparent);
+  z-index: 14;
+  animation: backdrop-in 180ms ease both;
+}
+.sidebar-overlay.is-visible {
+  display: block;
+}
+
+/* ── Btn-icon active state ── */
+.btn-icon:active {
+  transform: scale(0.92);
+  background: color-mix(in oklab, var(--color-text) 10%, transparent);
+}
+
+/* ── Settings section spacing ── */
+.settings-section + .settings-section {
+  margin-top: var(--space-2);
+}
+
+/* ── Form fieldset spacing ── */
+.form-fieldset + .form-fieldset {
+  margin-top: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 0 var(--space-4) var(--space-4);
+}
+
+/* ── Unlock container animation ── */
+.unlock-container {
+  animation: unlock-in 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes unlock-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Detail panel content entrance ── */
+.detail-content {
+  animation: content-in 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes content-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Password field monospace ── */
+.credential-field-text[data-field-value="password"] {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+}
+.credential-field-text--masked {
+  letter-spacing: 0.18em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* ── Tag hover ── */
+.tag-list .tag {
+  transition: background var(--transition-interactive), color var(--transition-interactive);
+}
+.tag-list .tag:hover {
+  background: color-mix(in oklab, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+}
+
+/* ── Access type option hover ── */
+.access-type-option {
+  cursor: pointer;
+  transition: border-color var(--transition-interactive), background var(--transition-interactive);
+}
+.access-type-option:hover {
+  border-color: color-mix(in oklab, var(--color-primary) 22%, transparent);
+  background: color-mix(in oklab, var(--color-primary) 5%, var(--color-surface));
+}
+
+/* ── Button loading state ── */
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ── Keyboard shortcut hint in topbar ── */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.375rem;
+  background: var(--color-surface-offset);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* ── Sidebar footer save button ── */
+.sidebar-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: var(--space-1);
+  padding-top: var(--space-3);
+  border-top: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+  flex-shrink: 0;
+}
+
+.sidebar-actions {
+  display: contents; /* wrapper transparan, tombol langsung masuk flex footer */
+}
+
+.sidebar-footer .btn {
+  flex: 1;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: var(--space-2);
+}
+
+/* ── Detail header: no sticky (causes gap issues at 100% zoom) ── */
+.detail-header {
+  position: static;
+}
+
+/* ── Reduce motion overrides ── */
+@media (prefers-reduced-motion: reduce) {
+  .credential-card:hover { transform: none; }
+  .unlock-container,
+  .detail-content,
+  .customer-item,
+  .toast,
+  .modal-backdrop:not([hidden]),
+  .modal-backdrop:not([hidden]) .modal { animation: none; }
+}
+
+/* ── Fix: icon size inside btn-copy and btn-reveal ── */
+.btn-copy svg,
+.btn-copy i,
+.btn-reveal svg,
+.btn-reveal i,
+.btn-icon svg,
+.btn-icon i {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+/* ── Fix: btn-reveal inside input wrapper — size & centering ── */
+.input-password-wrapper .btn-reveal {
+  width: 2.5rem;
+  height: 2.5rem;
+  right: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  z-index: 1;
+}
+.input-password-wrapper .btn-reveal:hover {
+  background: color-mix(in oklab, var(--color-text) 8%, transparent);
+  color: var(--color-text);
+}
+
+/* ── Fix: credential card reveal btn (standalone, not inside input) ── */
+.credential-field-value .btn-reveal {
+  position: static;
+  transform: none;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+/* ── Fix: btn-copy in credential card & access cards ── */
+.credential-field-value .btn-copy,
+.copyable .btn-copy {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+}
+.credential-field-value .btn-copy:hover,
+.copyable .btn-copy:hover {
+  background: color-mix(in oklab, var(--color-text) 8%, transparent);
+  color: var(--color-text);
+}
+
+/* ── Global Lucide SVG size normalization ── */
+.btn-copy svg,
+.btn-reveal svg,
+.btn-icon svg,
+.btn svg {
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* ── Detail header info: spacing antara nama dan tags ── */
+.detail-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.detail-header-info .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+/* ── Fix: credential field value — text rata kanan, tombol di kolom sendiri ── */
+.credential-field-value {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+}
+.credential-field-value .credential-field-text {
+  text-align: right;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Fix: access-details-row — same 3-col treatment ── */
+.access-detail-row .access-detail-value {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+}
+.access-detail-row .access-detail-value .access-detail-text {
+  text-align: right;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Field actions: tombol copy/reveal di samping nilai ── */
+.field-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+  justify-content: flex-end;
+}
+
+/* Credential row: 2 tombol (reveal + copy) = ~4.5rem */
+.credential-field-value .field-actions {
+  min-width: 4.5rem;
+}
+
+/* Access detail row: 1 tombol (copy only) = ~2.5rem */
+.access-detail-row .field-actions {
+  min-width: 2.5rem;
+}
+
+/* =============================================================
+   TABLE LAYOUT — Credentials & Access Methods
+============================================================= */
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+}
+
+/* ── Shared table base ── */
+.cred-table,
+.access-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.cred-table th,
+.access-table th {
+  text-align: left;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--color-surface-offset);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent);
+}
+
+.cred-table th:first-child,
+.access-table th:first-child { border-radius: var(--radius-lg) 0 0 0; }
+.cred-table th:last-child,
+.access-table th:last-child  { border-radius: 0 var(--radius-lg) 0 0; }
+
+.cred-table td,
+.access-table td {
+  padding: var(--space-3) var(--space-4);
+  vertical-align: middle;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-text) 5%, transparent);
+  color: var(--color-text);
+}
+
+.cred-table tbody tr:last-child td,
+.access-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cred-table tbody tr:hover,
+.access-table tbody tr:hover {
+  background: color-mix(in oklab, var(--color-primary) 4%, transparent);
+}
+
+/* ── Column widths ── */
+.cred-col-label    { width: 20%; min-width: 8rem; }
+.cred-col-username { width: 22%; min-width: 9rem; }
+.cred-col-password { width: 22%; min-width: 10rem; }
+.cred-col-notes    { width: auto; color: var(--color-text-muted); font-size: var(--text-xs); }
+.cred-col-actions  { width: 5rem; text-align: right; }
+
+/* ── Cell with value + copy/reveal buttons ── */
+.cred-field-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.cred-value {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cred-value--masked {
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+}
+
+/* ── Label cell ── */
+.cred-label-text {
+  font-weight: 500;
+  display: block;
+}
+
+.cred-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.tag--sm {
+  font-size: 0.65rem;
+  padding: 0.1em 0.45em;
+}
+
+/* ── Row actions ── */
+.cred-row-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  justify-content: flex-end;
+  opacity: 0;
+  transition: opacity var(--transition-interactive);
+}
+
+.cred-table tbody tr:hover .cred-row-actions,
+.access-table tbody tr:hover .cred-row-actions {
+  opacity: 1;
+}
+
+/* ── Access table specifics ── */
+.access-detail-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  background: var(--color-surface-offset);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.access-detail-chip .btn-copy {
+  margin-left: var(--space-1);
+}
+
+.access-details-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ── Access method section title row ── */
+.section-title-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+/* ── Notes cell ── */
+.cred-notes-text {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ── Empty hint ── */
+.empty-hint {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  padding: var(--space-4) 0;
+  text-align: center;
+}
+
+/* ── Access path breadcrumb inline di section title ── */
+.section-title-left .access-path-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-wrap: nowrap;
+}
+
+.section-title-left .access-badge {
+  font-size: var(--text-xs);
+  padding: 0.2em 0.6em;
+}
+
+.section-title-left .access-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-faint);
+}
+
+.section-title-left .access-arrow svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* ── Unlock file row ── */
+.unlock-file-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px dashed color-mix(in oklab, var(--color-text) 20%, transparent);
+  margin-bottom: var(--space-4);
+}
+
+.unlock-file-label {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-status--ok .unlock-file-label {
+  color: var(--color-success, #4ade80);
+}
+
+/* ── Unlock divider ── */
+.unlock-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-faint);
+  font-size: var(--text-xs);
+  margin: var(--space-2) 0;
+}
+.unlock-divider::before,
+.unlock-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: color-mix(in oklab, var(--color-text) 12%, transparent);
+}
+
+/*@media (min-width: 768px) {
+/* ── App layout: sidebar + main ── */
+.app-layout {
+  display: flex !important;
+  flex-direction: row !important;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* ================================================================
+   LAYOUT OVERRIDE — Desktop, no topbar, permanent sidebar
+================================================================ */
+
+/* Reset view positioning */
+.view {
+  display: block;
+}
+
+#view-main.main-layout {
+  display: flex !important;
+  flex-direction: row !important;
+  height: 100dvh !important;
+  overflow: hidden !important;
+  background: var(--color-bg);
+}
+
+/* ── Sidebar: permanent left panel ── */
+#view-main .sidebar {
+  position: relative !important;
+  inset: auto !important;
+  transform: none !important;
+  translate: none !important;
+  width: 20rem !important;
+  min-width: 16rem !important;
+  max-width: 22rem !important;
+  height: 100dvh !important;
+  flex-shrink: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  padding: var(--space-4);
+  background: var(--color-surface-2) !important;
+  border-right: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent) !important;
+  z-index: 5 !important;
+  box-shadow: none !important;
+}
+
+/* ── Sidebar header ── */
+#view-main .sidebar-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-bottom: var(--space-4) !important;
+  margin-bottom: var(--space-2) !important;
+  flex-shrink: 0 !important;
+}
+
+#view-main .sidebar-logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--space-2) !important;
+  font-size: var(--text-lg) !important;
+  font-weight: 700 !important;
+  color: var(--color-text) !important;
+}
+
+#view-main .sidebar-logo-text {
+  display: inline !important;
+}
+
+#view-main .sidebar-header-actions {
+  display: flex !important;
+  gap: var(--space-1) !important;
+}
+
+/* ── Search ── */
+#view-main .sidebar-search {
+  flex-shrink: 0 !important;
+  margin-bottom: var(--space-3) !important;
+}
+
+#view-main .search-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+#view-main .search-input {
+  width: 100% !important;
+}
+
+#view-main .search-icon {
+  position: absolute !important;
+  left: 0.65rem !important;
+  pointer-events: none !important;
+  width: 1rem !important;
+  height: 1rem !important;
+  color: var(--color-text-muted) !important;
+}
+
+/* ── Nav ── */
+#view-main .sidebar-nav {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  min-height: 0 !important;
+}
+
+#view-main .sidebar-nav-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: var(--space-2) 0 !important;
+  margin-bottom: var(--space-1) !important;
+}
+
+#view-main .sidebar-section-label {
+  font-size: var(--text-xs) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--color-text-muted) !important;
+}
+
+#view-main .customer-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--space-1) !important;
+}
+
+#view-main .customer-item {
+  width: 100% !important;
+  text-align: left !important;
+  padding: var(--space-3) var(--space-3) !important;
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent) !important;
+  background: var(--color-surface) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  transition: background var(--transition-interactive), border-color var(--transition-interactive) !important;
+}
+
+#view-main .customer-item:hover {
+  background: var(--color-surface-dynamic) !important;
+  border-color: color-mix(in oklab, var(--color-primary) 40%, transparent) !important;
+}
+
+#view-main .customer-item[aria-current="true"] {
+  background: color-mix(in oklab, var(--color-primary) 12%, var(--color-surface)) !important;
+  border-color: color-mix(in oklab, var(--color-primary) 50%, transparent) !important;
+}
+
+#view-main .customer-item-main {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.15rem !important;
+  width: 100% !important;
+}
+
+#view-main .customer-item-name {
+  font-weight: 600 !important;
+  font-size: var(--text-sm) !important;
+  color: var(--color-text) !important;
+}
+
+#view-main .customer-item-meta {
+  font-size: var(--text-xs) !important;
+  color: var(--color-text-muted) !important;
+}
+
+/* ── Footer ── */
+#view-main .sidebar-footer {
+  flex-shrink: 0 !important;
+  margin-top: var(--space-2) !important;
+  padding-top: var(--space-3) !important;
+  border-top: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  gap: var(--space-1) !important;
+}
+
+#view-main .sidebar-actions {
+  display: contents !important;
+}
+
+#view-main .sidebar-footer .btn {
+  flex: 1 !important;
+  justify-content: center !important;
+  min-height: 2.5rem !important;
+  padding: var(--space-2) !important;
+}
+
+/* ── Detail panel ── */
+#view-main .detail-panel {
+  flex: 1 !important;
+  min-width: 0 !important;
+  height: 100dvh !important;
+  overflow-y: auto !important;
+  padding: var(--space-6) !important;
+}
+
+/* ── Hide topbar-hamburger (no topbar) ── */
+.topbar-hamburger {
+  display: none !important;
+}
+
+/* ── Sidebar overlay (mobile only, not needed on desktop) ── */
+#sidebar-overlay {
+  display: none !important;
+}
+
+/* ── Customer list item wrapper ── */
+#view-main .customer-list li {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#view-main .customer-item {
+  width: 100% !important;
+}
+
+.cred-field-cell .btn-reveal svg,
+.cred-field-cell .btn-reveal i {
+  width: 1rem !important;
+  height: 1rem !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+  color: inherit !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+.cred-field-cell .btn-reveal {
+  position: static !important;
+  transform: none !important;
+  top: auto !important;
+  right: auto !important;
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  min-width: 1.75rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  overflow: visible !important;
+  color: var(--color-text-muted) !important;
+}
+
+.cred-field-cell .btn-reveal svg {
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2 !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* ── btn-reveal inside credential table cell ── */
+.cred-field-cell .btn-reveal {
+  position: static !important;
+  transform: none !important;
+  top: auto !important;
+  right: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  padding: 0 !important;
+  min-width: 2.25rem !important;
+  min-height: 2.25rem !important;
+  color: var(--color-text-muted) !important;
+  overflow: visible !important;
+}
+
+.cred-field-cell .btn-reveal svg,
+.cred-field-cell .btn-reveal i {
+  width: 1rem !important;
+  height: 1rem !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── Uniform icon size inside credential & access table ── */
+.cred-row .btn-copy svg,
+.cred-row .btn-copy i,
+.cred-row .btn-reveal svg,
+.cred-row .btn-reveal i,
+.cred-row .btn-icon svg,
+.cred-row .btn-icon i,
+.access-table .btn-copy svg,
+.access-table .btn-copy i,
+.access-table .btn-icon svg,
+.access-table .btn-icon i {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.cred-row .btn-copy,
+.cred-row .btn-icon,
+.access-table .btn-copy,
+.access-table .btn-icon {
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  min-width: 2.25rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  color: var(--color-text-muted);
+}
+
+::-ms-reveal {
+  display: none;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+/* ── Hide Edge/IE native clear button on search/text inputs ── */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-ms-clear,
+input::-ms-clear,
+input::-ms-reveal {
+  display: none !important;
+  width: 0;
+  height: 0;
+}
+
+/* ══════════════════════════════════════
+   CUSTOM SELECT DROPDOWN
+══════════════════════════════════════ */
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0 var(--space-3);  
+  height: unset;
+  min-height: 2.875rem;
+  padding: 0.75rem 0.875rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--transition-interactive), box-shadow var(--transition-interactive);
+}
+
+.custom-select-trigger:hover {
+  border-color: color-mix(in oklab, var(--color-text) 30%, transparent);
+}
+
+.custom-select-trigger:focus,
+.custom-select-trigger[aria-expanded="true"] {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary) 20%, transparent);
+}
+
+.custom-select-value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-select-arrow {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: transform 200ms ease;
+}
+
+.custom-select-trigger[aria-expanded="true"] .custom-select-arrow {
+  transform: rotate(180deg);
+}
+
+.custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px color-mix(in oklab, var(--color-text) 12%, transparent);
+  list-style: none;
+  margin: 0;
+  padding: var(--space-1);
+  display: none;
+  overflow: hidden;
+}
+
+.custom-select-dropdown.is-open {
+  display: block;
+  animation: dropdown-in 120ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes dropdown-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.custom-select-option {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background var(--transition-interactive);
+}
+
+.custom-select-option:hover {
+  background: color-mix(in oklab, var(--color-text) 6%, transparent);
+}
+
+.custom-select-option.is-selected {
+  color: var(--color-primary);
+  font-weight: 500;
+  background: color-mix(in oklab, var(--color-primary) 10%, transparent);
+}
+
+/* ── Reset browser fieldset defaults ── */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-fieldset {
+  border: 1px solid color-mix(in oklab, var(--color-text) 10%, transparent);
+  border-radius: var(--radius-lg);
+  padding: 0 var(--space-4) var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.form-fieldset + .form-fieldset {
+  margin-top: var(--space-4);
+}
+/* end @media (min-width: 768px) desktop layout */
+
+/* Sembunyikan di desktop */
+.mobile-topbar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .main-layout {
+    flex-direction: column;  /* tambahkan ini */
+  }
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-surface);
+  }
+
+  .mobile-topbar-title {
+    font-weight: 600;
+    font-size: var(--text-sm);
+  }
+}
+/* ── Mobile Portrait: Bottom Sheet Layout ── */
+@media (max-width: 767px) and (orientation: portrait) {
+
+  #view-main,
+  #view-main.main-layout {
+    flex-direction: column !important;
+    height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  .detail-panel,
+  #view-main .detail-panel {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: var(--space-4) !important;
+    width: 100% !important;
+    order: 1 !important;
+  }
+
+  .sidebar,
+  #view-main .sidebar {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 55vh !important;
+    overflow-y: auto !important;
+    border-right: none !important;
+    border-top: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent) !important;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+    box-shadow: 0 -4px 20px oklch(0 0 0 / 0.15) !important;
+    z-index: 5 !important;
+    flex-shrink: 0 !important;
+    order: 2 !important;
+    padding-top: 0;
+  }
+
+  /* Sidebar overlay tidak dipakai di bottom sheet mode */
+  .sidebar-overlay {
+    display: none !important;
+  }
+
+  /* Sidebar collapsed by default */
+  .sidebar-collapsible {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+
+  .sidebar-collapsible > .sidebar-collapsible-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Saat expanded */
+  .sidebar.is-expanded .sidebar-collapsible {
+    display: grid;
+    gap: var(--space-4);
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    grid-template-rows: 1fr;
+  }
+
+  /* Sidebar height menyesuaikan */
+  .sidebar.is-expanded {
+    max-height: 75vh !important;
+  }
+
+  /* Sidebar collapsed — hanya handle + header */
+  .sidebar:not(.is-expanded) {
+    max-height: none !important;
+    height: auto !important;
+  }
+  .sidebar > .sidebar-search {
+    flex-shrink: 0;
+    display: flex !important;
+  }
+
+  /* Handle styling */
+  .bottom-sheet-handle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: var(--space-2) 0;
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  /* Icon rotate saat expanded */
+  .bottom-sheet-handle i,
+  .bottom-sheet-handle svg {
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sidebar.is-expanded .bottom-sheet-handle i,
+  .sidebar.is-expanded .bottom-sheet-handle svg {
+    transform: rotate(180deg);
+  }
+  /* Hide hamburger toggle — tidak diperlukan */
+  .mobile-topbar {
+    display: none !important;
+  }
+}
+
+/* ── Bottom sheet drag handle ── */
+.bottom-sheet-handle {
+  display: none;
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .bottom-sheet-handle {
+    display: block;
+    width: 2.5rem;
+    margin: 0.625rem auto var(--space-2);
+    flex-shrink: 0;
+  }
+}
