@@ -2,11 +2,12 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-visual">
   <title>NetCreds</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="icon-192.png">
 </head>
 <body>
 
@@ -46,7 +47,7 @@
               autocomplete="current-password"
               required
             />
-            <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle password visibility">
+            <button type="button" class="btn-icon btn-reveal" data-target="input-master-password" aria-label="Toggle password visibility">
               <i data-lucide="eye"></i>
             </button>
           </div>
@@ -91,7 +92,7 @@
           <div class="input-password-wrapper">
             <input id="input-new-password" type="password" class="form-input"
               placeholder="At least 12 characters" autocomplete="new-password" required />
-            <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle">
+            <button type="button" class="btn-icon btn-reveal" data-target="input-new-password" aria-label="Toggle">
               <i data-lucide="eye"></i>
             </button>
           </div>
@@ -105,7 +106,7 @@
           <div class="input-password-wrapper">
             <input id="input-confirm-password" type="password" class="form-input"
               placeholder="Repeat password" autocomplete="new-password" required />
-            <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle">
+            <button type="button" class="btn-icon btn-reveal" data-target="input-confirm-password" aria-label="Toggle">
               <i data-lucide="eye"></i>
             </button>
           </div>
@@ -356,7 +357,7 @@
             <label for="cred-password" class="form-label">Password <span class="required">*</span></label>
             <div class="input-password-wrapper">
               <input id="cred-password" type="password" class="form-input" placeholder="Password" required autocomplete="new-password" />
-              <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle">
+              <button type="button" class="btn-icon btn-reveal" data-target="cred-password" aria-label="Toggle">
                 <i data-lucide="eye"></i>
               </button>
             </div>
@@ -523,15 +524,15 @@
             <p class="form-hint" style="margin-bottom:var(--space-3)">Re-encrypts the vault with a new master password.</p>
             <div class="input-password-wrapper" style="margin-bottom:var(--space-3)">
               <input id="settings-current-password" type="password" class="form-input" placeholder="Current password" autocomplete="current-password" />
-              <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle"><i data-lucide="eye"></i></button>
+              <button type="button" class="btn-icon btn-reveal" data-target="settings-current-password" aria-label="Toggle"><i data-lucide="eye"></i></button>
             </div>
             <div class="input-password-wrapper" style="margin-bottom:var(--space-3)">
               <input id="settings-new-password" type="password" class="form-input" placeholder="New password" autocomplete="new-password" />
-              <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle"><i data-lucide="eye"></i></button>
+              <button type="button" class="btn-icon btn-reveal" data-target="settings-new-password" aria-label="Toggle"><i data-lucide="eye"></i></button>
             </div>
             <div class="input-password-wrapper" style="margin-bottom:var(--space-3)">
               <input id="settings-confirm-password" type="password" class="form-input" placeholder="Confirm new password" autocomplete="new-password" />
-              <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle"><i data-lucide="eye"></i></button>
+              <button type="button" class="btn-icon btn-reveal" data-target="settings-confirm-password" aria-label="Toggle"><i data-lucide="eye"></i></button>
             </div>
             <button type="submit" class="btn btn-primary btn-sm">Change Password</button>
             <span class="form-error" id="settings-password-error" style="display:block;margin-top:var(--space-2)"></span>
