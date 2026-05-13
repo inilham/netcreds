@@ -7,12 +7,6 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="manifest" href="manifest.json">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="NetCreds">
-  <link rel="apple-touch-icon" href="icon-192.png">
-  <meta name="theme-color" content="#4f98a3">
 </head>
 <body>
 
@@ -135,6 +129,27 @@
   ══════════════════════════════════════════ -->
   <div id="view-main" class="view view--hidden main-layout">
 
+    <div class="mobile-topbar" id="mobile-topbar">
+      <div class="mobile-topbar-brand">
+        <div class="sidebar-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+          </svg>
+          <span class="sidebar-logo-text">NetCreds</span>
+        </div>
+      </div>
+
+      <div class="mobile-topbar-actions">
+        <button id="btn-theme-toggle-mobile" class="btn-icon" data-theme-toggle aria-label="Toggle theme">
+          <i data-lucide="sun"></i>
+        </button>
+        <button id="btn-open-settings-mobile" class="btn-icon" aria-label="Settings" aria-haspopup="dialog">
+          <i data-lucide="settings"></i>
+        </button>
+      </div>
+    </div>
     <!-- ── Sidebar ── -->
     <aside id="sidebar" class="sidebar" aria-label="Customer list">
         <button class="bottom-sheet-handle" id="btn-bottom-sheet" aria-label="Toggle sidebar" aria-expanded="false">
