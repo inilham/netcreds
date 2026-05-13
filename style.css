@@ -2453,7 +2453,6 @@ fieldset {
     min-width: 0 !important;
     max-width: 100% !important;
     height: auto !important;
-    max-height: 55vh !important;
     overflow-y: auto !important;
     border-right: none !important;
     border-top: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent) !important;
