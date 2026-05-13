@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NetCreds</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       VIEW: UNLOCK
+  ══════════════════════════════════════════ -->
+  <div id="view-unlock" class="view">
+    <div class="unlock-container">
+      <div class="unlock-logo">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+        </svg>
+        <h1 class="unlock-title">NetCreds</h1>
+      </div>
+      <p class="unlock-subtitle">Network Credential Vault</p>
+
+      <form id="form-unlock" novalidate autocomplete="off">
+
+        <!-- File picker row -->
+        <div class="unlock-file-row" id="unlock-file-status" class="file-status--none">
+          <button type="button" id="btn-open-vault-file" class="btn btn-secondary btn-sm">
+            <i data-lucide="folder-open"></i> Open Vault File
+          </button>
+          <span id="unlock-file-label" class="unlock-file-label">No file selected</span>
+        </div>
+
+        <div class="form-group">
+          <label for="input-master-password" class="form-label">Master Password</label>
+          <div class="input-password-wrapper">
+            <input
+              id="input-master-password"
+              type="password"
+              class="form-input"
+              placeholder="Enter master password"
+              autocomplete="current-password"
+              required
+            />
+            <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle password visibility">
+              <i data-lucide="eye"></i>
+            </button>
+          </div>
+          <span class="form-error" id="unlock-error"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" id="btn-unlock">
+          <i data-lucide="lock-open"></i>
+          Unlock
+        </button>
+
+      </form>
+
+      <div class="unlock-divider"><span>or</span></div>
+
+      <button type="button" id="btn-create-vault" class="btn btn-ghost btn-full">
+        <i data-lucide="plus-circle"></i>
+        Create New Vault
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VIEW: CREATE VAULT
+  ══════════════════════════════════════════ -->
+  <div id="view-create-vault" class="view view--hidden">
+    <div class="unlock-container">
+      <div class="unlock-logo">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+        </svg>
+        <h1 class="unlock-title">Create Vault</h1>
+      </div>
+      <p class="unlock-subtitle">Set a strong master password to encrypt your vault.</p>
+
+      <form id="form-create-vault" novalidate autocomplete="off">
+        <div class="form-group">
+          <label for="input-new-password" class="form-label">New Master Password</label>
+          <div class="input-password-wrapper">
+            <input id="input-new-password" type="password" class="form-input"
+              placeholder="At least 12 characters" autocomplete="new-password" required />
+            <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle">
+              <i data-lucide="eye"></i>
+            </button>
+          </div>
+          <div class="password-strength">
+            <div class="strength-bar"><div id="strength-fill" class="strength-fill"></div></div>
+            <span id="strength-label" class="strength-label"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="input-confirm-password" class="form-label">Confirm Password</label>
+          <div class="input-password-wrapper">
+            <input id="input-confirm-password" type="password" class="form-input"
+              placeholder="Repeat password" autocomplete="new-password" required />
+            <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle">
+              <i data-lucide="eye"></i>
+            </button>
+          </div>
+          <span class="form-error" id="create-vault-error"></span>
+        </div>
+        <div class="form-row">
+          <button type="button" id="btn-back-to-unlock" class="btn btn-ghost">
+            <i data-lucide="arrow-left"></i> Back
+          </button>
+          <button type="submit" id="btn-save-new-vault" class="btn btn-primary" style="flex:1">
+            <i data-lucide="save"></i> Create Vault
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       VIEW: MAIN APP
+  ══════════════════════════════════════════ -->
+  <div id="view-main" class="view view--hidden main-layout">
+
+    <div class="mobile-topbar" id="mobile-topbar">
+      <div class="mobile-topbar-brand">
+        <div class="sidebar-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+          </svg>
+          <span class="sidebar-logo-text">NetCreds</span>
+        </div>
+      </div>
+
+      <div class="mobile-topbar-actions">
+        <button id="btn-theme-toggle-mobile" class="btn-icon" data-theme-toggle aria-label="Toggle theme">
+          <i data-lucide="sun"></i>
+        </button>
+        <button id="btn-open-settings-mobile" class="btn-icon" aria-label="Settings" aria-haspopup="dialog">
+          <i data-lucide="settings"></i>
+        </button>
+      </div>
+    </div>
+    <!-- ── Sidebar ── -->
+    <aside id="sidebar" class="sidebar" aria-label="Customer list">
+        <button class="bottom-sheet-handle" id="btn-bottom-sheet" aria-label="Toggle sidebar" aria-expanded="false">
+          <i data-lucide="chevron-up" id="bottom-sheet-icon"></i>
+        </button>
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+          </svg>
+          <span class="sidebar-logo-text">NetCreds</span>
+        </div>
+        <div class="sidebar-header-actions">
+          <button id="btn-theme-toggle" class="btn-icon" data-theme-toggle aria-label="Toggle theme">
+            <i data-lucide="sun"></i>
+          </button>
+          <button id="btn-open-settings" class="btn-icon" aria-label="Settings" aria-haspopup="dialog">
+            <i data-lucide="settings"></i>
+          </button>
+        </div>
+      </div>
+      <div class="sidebar-search">
+            <div class="search-wrapper">
+              <i data-lucide="search" class="search-icon" aria-hidden="true"></i>
+              <input
+                id="input-search"
+                type="search"
+                class="search-input"
+                placeholder="Search customers or users…"
+                aria-label="Search"
+                autocomplete="off"
+              />
+              <button id="btn-clear-search" class="btn-icon btn-sm search-clear" hidden aria-label="Clear search">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+      <div class="sidebar-collapsible" id="sidebar-collapsible">
+        <div class="sidebar-collapsible-inner">
+
+
+          <nav class="sidebar-nav" aria-label="Customers">
+            <div class="sidebar-nav-header">
+              <span class="sidebar-section-label">Customers</span>
+              <button id="btn-add-customer" class="btn-icon btn-sm" aria-label="Add customer" aria-haspopup="dialog">
+                <i data-lucide="plus"></i>
+              </button>
+            </div>
+            <ul id="customer-list" class="customer-list" role="list" aria-label="Customer list"></ul>
+            <div id="customer-list-empty" class="sidebar-empty" hidden>
+              <i data-lucide="users" aria-hidden="true"></i>
+              <p>No customers yet.<br/>Click + to add one.</p>
+            </div>
+            <div id="customer-list-no-results" class="sidebar-empty" hidden>
+              <i data-lucide="search-x" aria-hidden="true"></i>
+              <p>No results found.</p>
+            </div>
+          </nav>
+
+          <div class="sidebar-footer">
+            <button id="btn-save-vault-as" class="btn btn-ghost btn-sm btn-full" title="Export Vault">
+              <i data-lucide="download"></i>
+            </button>
+            <button id="btn-switch-vault" class="btn btn-ghost btn-sm btn-full" title="Open Vault">
+              <i data-lucide="folder-open"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Detail Panel ── -->
+    <main id="detail-panel" class="detail-panel" aria-label="Customer detail">
+
+      <!-- Empty state -->
+      <div id="detail-empty" class="detail-empty">
+        <div class="detail-empty-icon">
+          <i data-lucide="mouse-pointer-click" aria-hidden="true"></i>
+        </div>
+        <h2>Select a customer</h2>
+        <p>Choose a customer from the list to view credentials and access details.</p>
+      </div>
+
+      <!-- Detail content -->
+      <div id="detail-content" class="detail-content" hidden>
+
+        <div class="detail-header">
+          <div class="detail-header-info">
+            <h2 id="detail-customer-name" class="detail-customer-name"></h2>
+            <div id="detail-customer-tags" class="tag-list" aria-label="Tags"></div>
+          </div>
+          <div class="detail-header-actions">
+            <button id="btn-edit-customer" class="btn btn-secondary btn-sm" aria-haspopup="dialog">
+              <i data-lucide="pencil"></i> Edit
+            </button>
+            <button id="btn-delete-customer" class="btn btn-danger btn-sm" aria-haspopup="dialog">
+              <i data-lucide="trash-2"></i> Delete
+            </button>
+          </div>
+        </div>
+
+        <!-- Access Method Section -->
+        <section class="detail-section" id="access-method-section" aria-label="Access Method">
+        </section>
+
+        <!-- Credentials Section -->
+        <section class="detail-section" aria-labelledby="cred-section-title">
+          <div class="section-title-row">
+            <h3 id="cred-section-title" class="section-title">
+              <i data-lucide="key" aria-hidden="true"></i>
+              Credentials
+            </h3>
+            <button id="btn-add-credential" class="btn btn-ghost btn-sm" aria-haspopup="dialog">
+              <i data-lucide="plus"></i> Add Credential
+            </button>
+          </div>
+          <div id="credential-list" class="table-wrapper"></div>
+          <div id="credential-list-empty" class="list-empty" hidden>
+            <i data-lucide="key" aria-hidden="true"></i>
+            <p>No credentials yet. Add the first one.</p>
+          </div>
+        </section>
+
+      </div><!-- /detail-content -->
+    </main>
+
+  </div><!-- /view-main -->
+
+
+  <!-- ══════════════════════════════════════════
+       TEMPLATES
+  ══════════════════════════════════════════ -->
+  <template id="template-customer-item">
+    <li>
+      <button class="customer-item" role="listitem" type="button" aria-current="false">
+        <div class="customer-item-main">
+          <span class="customer-item-name"></span>
+          <span class="customer-item-meta"></span>
+        </div>
+      </button>
+    </li>
+  </template>
+
+
+  <!-- ══════════════════════════════════════════
+       MODALS
+  ══════════════════════════════════════════ -->
+
+  <!-- Modal: Add/Edit Customer -->
+  <div id="modal-customer" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-customer-title" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-customer-title" class="modal-title">Add Customer</h2>
+        <button class="btn-icon" aria-label="Close" data-close-modal="modal-customer">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form-customer" novalidate autocomplete="off">
+          <div class="form-group">
+            <label for="customer-name" class="form-label">Customer Name <span class="required">*</span></label>
+            <input id="customer-name" type="text" class="form-input" placeholder="e.g. PT. Telkom Indonesia" required />
+            <span class="form-error" id="customer-name-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="customer-tags" class="form-label">Tags <span class="form-hint">(comma separated)</span></label>
+            <input id="customer-tags" type="text" class="form-input" placeholder="e.g. telco, cisco, production" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" data-close-modal="modal-customer">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="btn-save-customer">
+              <i data-lucide="save"></i> Save Customer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal: Add/Edit Credential -->
+  <div id="modal-credential" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-credential-title" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-credential-title" class="modal-title">Add Credential</h2>
+        <button class="btn-icon" aria-label="Close" data-close-modal="modal-credential">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form-credential" novalidate autocomplete="off">
+          <div class="form-group">
+            <label for="cred-label" class="form-label">Label <span class="required">*</span></label>
+            <input id="cred-label" type="text" class="form-input" placeholder="e.g. Admin, Read-Only, Enable Secret" required />
+            <span class="form-error" id="cred-label-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="cred-username" class="form-label">Username</label>
+            <input id="cred-username" type="text" class="form-input" placeholder="e.g. admin" required autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label for="cred-password" class="form-label">Password <span class="required">*</span></label>
+            <div class="input-password-wrapper">
+              <input id="cred-password" type="password" class="form-input" placeholder="Password" required autocomplete="new-password" />
+              <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+            <span class="form-error" id="cred-password-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="cred-tags" class="form-label">Tags <span class="form-hint">(comma separated)</span></label>
+            <input id="cred-tags" type="text" class="form-input" placeholder="e.g. cisco, enable, tacacs" />
+          </div>
+          <div class="form-group">
+            <label for="cred-notes" class="form-label">Notes</label>
+            <input id="cred-notes" type="text" class="form-input" placeholder="e.g. Only for Cisco ASR" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" data-close-modal="modal-credential">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal: Add/Edit Access Method -->
+  <div id="modal-access" class="modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="modal-access-title">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-access-title" class="modal-title">Add Access Method</h2>
+        <button class="btn-icon" data-close-modal="modal-access" aria-label="Close">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form-access" novalidate autocomplete="off">
+
+          <div class="form-group">
+            <label class="form-label">Access Type <span class="required">*</span></label>
+            <div class="access-type-selector" role="group" aria-label="Access type">
+              <label class="access-type-option">
+                <input type="radio" name="method" value="vpn" />
+                <span class="access-type-label">
+                  <i data-lucide="shield" aria-hidden="true"></i>
+                  VPN Only
+                </span>
+              </label>
+              <label class="access-type-option">
+                <input type="radio" name="method" value="vpn+jumphost" />
+                <span class="access-type-label">
+                  <i data-lucide="server" aria-hidden="true"></i>
+                  VPN + Jumphost
+                </span>
+              </label>
+              <label class="access-type-option">
+                <input type="radio" name="method" value="pam" />
+                <span class="access-type-label">
+                  <i data-lucide="lock-keyhole" aria-hidden="true"></i>
+                  PAM
+                </span>
+              </label>
+              <label class="access-type-option">
+                <input type="radio" name="method" value="direct" />
+                <span class="access-type-label">
+                  <i data-lucide="cable" aria-hidden="true"></i>
+                  Direct
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- VPN fields -->
+          <fieldset class="access-fields-vpn form-fieldset" hidden>
+            <legend class="form-legend">VPN Details</legend>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="access-vpn-type">VPN Type</label>
+                <div class="custom-select" id="access-vpn-type-wrapper">
+                  <input type="hidden" name="vpn_type" id="access-vpn-type" value="Anyconnect">
+                  <button type="button" class="custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="custom-select-value">Anyconnect</span>
+                    <i data-lucide="chevron-down" class="custom-select-arrow"></i>
+                  </button>
+                  <ul class="custom-select-dropdown" role="listbox">
+                    <li class="custom-select-option is-selected" role="option" data-value="Anyconnect">Anyconnect</li>
+                    <li class="custom-select-option" role="option" data-value="GlobalProtect">GlobalProtect</li>
+                    <li class="custom-select-option" role="option" data-value="Forticlient">Forticlient</li>
+                    <li class="custom-select-option" role="option" data-value="Other">Other</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="access-vpn-group">Group / Profile</label>
+                <input id="access-vpn-group" class="form-input" name="vpn_group" type="text" placeholder="e.g. NOC, Engineer">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="access-vpn-server">VPN Server</label>
+              <input id="access-vpn-server" class="form-input" name="vpn_server" type="text" placeholder="e.g. vpn.customer.co.id">
+            </div>
+          </fieldset>
+
+          <!-- Jumphost fields -->
+          <fieldset class="access-fields-jumphost form-fieldset" hidden>
+            <legend class="form-legend">Jumphost Details</legend>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="access-jh-host">Host / IP</label>
+                <input id="access-jh-host" class="form-input" name="jh_host" type="text" placeholder="e.g. 10.1.1.254">
+              </div>
+              <div class="form-group form-group--narrow">
+                <label class="form-label" for="access-jh-port">Port</label>
+                <input id="access-jh-port" class="form-input" name="jh_port" type="number" value="22" min="1" max="65535">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="access-jh-user">Username (optional)</label>
+              <input id="access-jh-user" class="form-input" name="jh_user" type="text" placeholder="e.g. netops">
+            </div>
+          </fieldset>
+
+          <!-- PAM fields -->
+          <fieldset class="access-fields-pam form-fieldset" hidden>
+            <legend class="form-legend">PAM Details</legend>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="access-pam-provider">Provider</label>
+                <input id="access-pam-provider" class="form-input" name="pam_provider" type="text" placeholder="e.g. CyberArk, BeyondTrust">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="access-pam-url">URL</label>
+                <input id="access-pam-url" class="form-input" name="pam_url" type="text" placeholder="https://pam.example.com">
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label class="form-label" for="access-general-notes">Notes (optional)</label>
+            <textarea id="access-general-notes" class="form-input form-textarea" name="general_notes" rows="2"
+              placeholder="e.g. VPN aktif 24/7, jumphost reboot tiap Minggu 02:00"></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" data-close-modal="modal-access">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal: Settings -->
+  <div id="modal-settings" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-settings-title" hidden>
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-settings-title" class="modal-title">Settings</h2>
+        <button class="btn-icon" aria-label="Close" data-close-modal="modal-settings">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form-change-password" novalidate autocomplete="off">
+          <div class="form-group">
+            <label class="form-label">Change Master Password</label>
+            <p class="form-hint" style="margin-bottom:var(--space-3)">Re-encrypts the vault with a new master password.</p>
+            <div class="input-password-wrapper" style="margin-bottom:var(--space-3)">
+              <input id="settings-current-password" type="password" class="form-input" placeholder="Current password" autocomplete="current-password" />
+              <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle"><i data-lucide="eye"></i></button>
+            </div>
+            <div class="input-password-wrapper" style="margin-bottom:var(--space-3)">
+              <input id="settings-new-password" type="password" class="form-input" placeholder="New password" autocomplete="new-password" />
+              <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle"><i data-lucide="eye"></i></button>
+            </div>
+            <div class="input-password-wrapper" style="margin-bottom:var(--space-3)">
+              <input id="settings-confirm-password" type="password" class="form-input" placeholder="Confirm new password" autocomplete="new-password" />
+              <button type="button" class="btn-icon btn-reveal-password" aria-label="Toggle"><i data-lucide="eye"></i></button>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Change Password</button>
+            <span class="form-error" id="settings-password-error" style="display:block;margin-top:var(--space-2)"></span>
+          </div>
+        </form>
+        <hr style="border:none;border-top:1px solid var(--color-divider);margin:var(--space-6) 0">
+        <div class="form-group">
+          <label class="form-label" style="color:var(--color-error)">Danger Zone</label>
+          <button id="btn-clear-vault" class="btn btn-danger btn-sm">Clear Entire Vault</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal: Confirm -->
+  <div id="modal-confirm" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-confirm-title" hidden>
+    <div class="modal modal--sm">
+      <div class="modal-header">
+        <h2 id="modal-confirm-title" class="modal-title">Confirm</h2>
+      </div>
+      <div class="modal-body">
+        <p id="modal-confirm-message"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" data-close-modal="modal-confirm">Cancel</button>
+        <button type="button" class="btn btn-danger" id="btn-confirm-delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Toast -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+
+  <!-- JavaScript -->
+  <script src="crypto.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

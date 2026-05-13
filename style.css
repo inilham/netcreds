@@ -2433,6 +2433,9 @@ fieldset {
     overflow: hidden !important;
   }
 
+  #view-main .sidebar-header {
+   display: none !important;
+  }
   .detail-panel,
   #view-main .detail-panel {
     flex: 1 !important;
@@ -2452,7 +2455,7 @@ fieldset {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
-    height: auto !important;
+    height: max-content !important;
     overflow-y: auto !important;
     border-right: none !important;
     border-top: 1px solid color-mix(in oklab, var(--color-text) 8%, transparent) !important;
@@ -2527,6 +2530,120 @@ fieldset {
   .sidebar.is-expanded .bottom-sheet-handle i,
   .sidebar.is-expanded .bottom-sheet-handle svg {
     transform: rotate(180deg);
+  }
+
+  /* App shell mobile */
+  #view-main.main-layout {
+    display: grid !important;
+    grid-template-rows: auto auto 1fr auto !important;
+    height: 100dvh !important;
+    overflow: hidden !important;
+    background: var(--color-bg) !important;
+  }
+
+  /* Header app di atas */
+  #view-main .mobile-topbar {
+    display: flex !important;
+    grid-row: 1 !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    position: sticky;
+    top: 0;
+    z-index: 120;
+  }
+
+  /* Detail pane di tengah */
+  #view-main .detail-panel {
+    grid-row: 3 !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    padding: var(--space-4) !important;
+  }
+
+  /* Sidebar collapsed di bawah */
+  #view-main .sidebar {
+    grid-row: 4 !important;
+    max-height: 75vh !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    position: relative !important;
+    transform: none !important;
+  }
+
+  /* Saat collapsed: sembunyikan daftar customer, keep search + footer */
+  #view-main .sidebar.is-collapsed .customer-list {
+    display: none !important;
+  }
+
+  #view-main .sidebar.is-collapsed .sidebar-footer {
+    display: flex !important;
+  }
+
+  /* Search tetap tampil */
+  #view-main.main-layout {
+    display: grid !important;
+    grid-template-rows: auto 1fr auto !important;
+    height: 100dvh !important;
+    overflow: hidden !important;
+    background: var(--color-bg) !important;
+  }
+
+  .mobile-topbar {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    z-index: 120;
+  }
+
+  .mobile-topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .mobile-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+  }
+
+  #view-main .detail-panel {
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    padding: var(--space-4) !important;
+  }
+
+  #view-main .sidebar {
+    max-height: 75vh !important;
+    overflow: hidden !important;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  #view-main .sidebar-collapsible {
+    max-height: 75vh !important;
+    overflow-y: auto !important;
+  }
+
+  #view-main .sidebar.is-collapsed .sidebar-collapsible-inner > .sidebar-nav {
+    display: none !important;
+  }
+
+  #view-main .sidebar.is-collapsed .sidebar-search,
+  #view-main .sidebar.is-collapsed .sidebar-footer {
+    display: block !important;
   }
   /* Hide hamburger toggle — tidak diperlukan */
   .mobile-topbar {
