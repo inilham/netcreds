@@ -1281,14 +1281,6 @@ p {
     flex-direction: column !important;
   }
 
-  #view-main .sidebar {
-    position: fixed !important;
-    top: 4.25rem !important;
-    left: 0 !important;
-    height: calc(100dvh - 4.25rem) !important;
-    margin: 0 !important;
-  }
-
   #view-main .detail-panel {
     flex: 1 1 auto !important;
     min-height: 0 !important;
@@ -2497,7 +2489,7 @@ fieldset {
 
   /* Sidebar height menyesuaikan */
   .sidebar.is-expanded {
-    max-height: 75vh !important;
+    min-height: 65vh !important;
   }
 
   /* Sidebar collapsed — hanya handle + header */
@@ -2568,7 +2560,7 @@ fieldset {
   #view-main .sidebar {
     grid-row: 4 !important;
     max-height: 75vh !important;
-    min-height: 0 !important;
+    min-height: 0;
     overflow-y: auto !important;
     border-top: 1px solid var(--color-border);
     background: var(--color-surface);
