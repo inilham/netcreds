@@ -2,7 +2,7 @@
   "name": "NetCreds",
   "short_name": "NetCreds",
   "description": "Network Credential Vault",
-  "start_url": "./netcreds.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#171614",
   "theme_color": "#4f98a3",
