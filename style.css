@@ -1276,6 +1276,25 @@ p {
     height: 100%;
     padding: var(--space-4);
   }
+  #view-main.main-layout {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  #view-main .sidebar {
+    position: fixed !important;
+    top: 4.25rem !important;
+    left: 0 !important;
+    height: calc(100dvh - 4.25rem) !important;
+    margin: 0 !important;
+  }
+
+  #view-main .detail-panel {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    background: var(--color-bg) !important;
+  }
 
 }
 
@@ -2528,4 +2547,18 @@ fieldset {
     margin: 0.625rem auto var(--space-2);
     flex-shrink: 0;
   }
+}
+/* FIX GAP BETWEEN SIDEBAR AND DETAIL PANEL - MOBILE + DESKTOP */
+#view-main {
+  background: var(--color-bg) !important;
+}
+
+#view-main.main-layout {
+  gap: 0 !important;
+  background: var(--color-bg) !important;
+}
+
+#view-main .sidebar,
+#view-main .detail-panel {
+  margin: 0 !important;
 }
