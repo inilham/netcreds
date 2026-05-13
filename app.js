@@ -832,7 +832,6 @@ function renderAccessMethod(access) {
   const section = document.getElementById('access-method-section');
   if (!section) return;
 
-  // Support both legacy single-object and new array format
   const methods = Array.isArray(access) ? access : (access ? [access] : []);
 
   if (methods.length === 0) {
@@ -846,14 +845,6 @@ function renderAccessMethod(access) {
     return;
   }
 
-  // Build path breadcrumb from first/primary method
-  const primary = methods[0];
-  const pathSteps = buildAccessPath(primary);
-  const pathHTML  = pathSteps.map((s, i) =>
-    (i > 0 ? `<span class="access-arrow"><i data-lucide="chevron-right"></i></span>` : '') +
-    `<span class="access-badge ${s.cls}">${s.label}</span>`
-  ).join('');
-
   section.innerHTML = `
     <div class="section-title-row">
       <h3 class="section-title" style="margin:0"><i data-lucide="network"></i> Access Method</h3>
@@ -863,6 +854,7 @@ function renderAccessMethod(access) {
       <table class="access-table" aria-label="Access methods">
         <thead>
           <tr>
+            <th class="cred-col-handle"></th>
             <th>Method</th>
             <th>Type</th>
             <th>Host</th>
@@ -877,6 +869,7 @@ function renderAccessMethod(access) {
   document.getElementById('btn-add-access')?.addEventListener('click', () => openAddAccessModal());
 
   const tbody = document.getElementById('access-table-body');
+
   methods.forEach((acc, idx) => {
     const tr = document.createElement('tr');
     tr.dataset.accessIdx = idx;
@@ -884,6 +877,11 @@ function renderAccessMethod(access) {
     const { label, typeText, hostText, detailsHTML } = buildAccessRowData(acc);
 
     tr.innerHTML = `
+      <td class="cred-col-handle">
+        <span class="drag-handle" title="Drag to reorder">
+          <i data-lucide="grip-vertical"></i>
+        </span>
+      </td>
       <td><span class="access-badge access-badge--${acc.method || ''}">${escapeHtml(label)}</span></td>
       <td><span class="cred-value">${escapeHtml(typeText)}</span></td>
       <td>
@@ -902,9 +900,65 @@ function renderAccessMethod(access) {
         </div>
       </td>`;
 
+    // Copy buttons di dalam detailsHTML
+    tr.querySelectorAll('[data-copy-value]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(btn.dataset.copyValue).then(() => {
+          btn.classList.add('copy-success');
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<i data-lucide="check"></i>';
+          lucide.createIcons({ nodes: [btn] });
+          setTimeout(() => {
+            btn.classList.remove('copy-success');
+            btn.innerHTML = orig;
+            lucide.createIcons({ nodes: [btn] });
+          }, 1500);
+        });
+      });
+    });
+
     tr.querySelector('[data-action="edit-access"]')?.addEventListener('click', () => openEditAccessModal(acc, idx));
     tr.querySelector('[data-action="delete-access"]')?.addEventListener('click', () => confirmDeleteAccess(idx));
+
     tbody.appendChild(tr);
+  });
+
+  lucide.createIcons({ nodes: [section] });
+
+  // Init SortableJS
+  initAccessSortable(tbody);
+}
+
+function initAccessSortable(tbody) {
+  if (!window.Sortable) return;
+
+  Sortable.create(tbody, {
+    handle: '.drag-handle',
+    animation: 150,
+    ghostClass: 'cred-row--ghost',
+    chosenClass: 'cred-row--chosen',
+    dragClass: 'cred-row--drag',
+
+    onEnd(evt) {
+      const { oldIndex, newIndex } = evt;
+      if (oldIndex === newIndex) return;
+
+      const customer = state.vault?.customers?.find(
+        c => c.id === state.selectedCustomerId
+      );
+      if (!customer) return;
+
+      const methods = Array.isArray(customer.access)
+        ? customer.access
+        : (customer.access ? [customer.access] : []);
+
+      const [moved] = methods.splice(oldIndex, 1);
+      methods.splice(newIndex, 0, moved);
+
+      customer.access = methods;
+      markUnsaved();
+      renderAccessMethod(customer.access);
+    },
   });
 }
 
@@ -1102,12 +1156,12 @@ function renderCredentials(credentials) {
     return;
   }
 
-  // Build table
   const hasNotes = credentials.some(c => c.notes);
   container.innerHTML = `
     <table class="cred-table" aria-label="Credentials">
       <thead>
         <tr>
+          <th class="cred-col-handle"></th>
           <th class="cred-col-label">Label</th>
           <th class="cred-col-username">Username</th>
           <th class="cred-col-password">Password</th>
@@ -1120,16 +1174,20 @@ function renderCredentials(credentials) {
 
   const tbody = container.querySelector('#cred-table-body');
 
-  credentials.forEach(cred => {
+  credentials.forEach((cred) => {
     const tr = document.createElement('tr');
     tr.className = 'cred-row';
     tr.dataset.credentialId = cred.id;
 
-    // Tags as small badges after label
     const tagHTML = (cred.tags || []).map(t =>
       `<span class="tag tag--sm">${escapeHtml(t)}</span>`).join('');
 
     tr.innerHTML = `
+      <td class="cred-col-handle">
+        <span class="drag-handle" title="Drag to reorder">
+          <i data-lucide="grip-vertical"></i>
+        </span>
+      </td>
       <td class="cred-col-label">
         <span class="cred-label-text">${escapeHtml(cred.label)}</span>
         ${tagHTML ? `<div class="cred-tags">${tagHTML}</div>` : ''}
@@ -1155,22 +1213,20 @@ function renderCredentials(credentials) {
         </div>
       </td>`;
 
-    // Reveal button event
+    // Reveal password
     const revealBtn = tr.querySelector('[data-reveal-field="password"]');
     const pwEl      = tr.querySelector('[data-field-value="password"]');
     revealBtn?.addEventListener('click', () => {
       const masked = pwEl.dataset.masked === 'true';
-      pwEl.textContent  = masked ? pwEl.dataset.plaintext : '••••••••••';
+      pwEl.textContent    = masked ? pwEl.dataset.plaintext : '••••••••••';
       pwEl.dataset.masked = masked ? 'false' : 'true';
       pwEl.classList.toggle('cred-value--masked', !masked);
       revealBtn.setAttribute('aria-label', masked ? 'Hide password' : 'Show password');
-      revealBtn.innerHTML = masked
-        ? '<i data-lucide="eye-off"></i>'
-        : '<i data-lucide="eye"></i>';
+      revealBtn.innerHTML = masked ? '<i data-lucide="eye-off"></i>' : '<i data-lucide="eye"></i>';
       lucide.createIcons({ nodes: [revealBtn] });
     });
 
-    // Copy buttons — use data-copy-value directly
+    // Copy buttons
     tr.querySelectorAll('[data-copy-value]').forEach(btn => {
       btn.addEventListener('click', () => {
         navigator.clipboard.writeText(btn.dataset.copyValue).then(() => {
@@ -1193,10 +1249,12 @@ function renderCredentials(credentials) {
 
     tbody.appendChild(tr);
   });
+
   lucide.createIcons();
+
+  // Init SortableJS setelah tbody terisi
+  initCredentialSortable(tbody);
 }
-
-
 
 function attachCredentialCardEvents(fragment, cred) {
   // Reveal password
@@ -1243,6 +1301,35 @@ function attachCredentialCardEvents(fragment, cred) {
   deleteBtn?.addEventListener('click', () => confirmDeleteCredential(cred.id, cred.label));
 }
 
+function initCredentialSortable(tbody) {
+  if (!window.Sortable) return;
+
+  Sortable.create(tbody, {
+    handle: '.drag-handle',      // hanya bisa drag lewat handle
+    animation: 150,              // animasi smooth saat swap
+    ghostClass: 'cred-row--ghost',   // class saat row sedang di-drag
+    chosenClass: 'cred-row--chosen', // class saat row dipilih
+    dragClass: 'cred-row--drag',     // class pada elemen yang digeser
+
+    onEnd(evt) {
+      const { oldIndex, newIndex } = evt;
+      if (oldIndex === newIndex) return;
+
+      const customer = state.vault?.customers?.find(
+        c => c.id === state.selectedCustomerId
+      );
+      if (!customer) return;
+
+      // Reorder array state sesuai posisi baru
+      const arr = customer.credentials;
+      const [moved] = arr.splice(oldIndex, 1);
+      arr.splice(newIndex, 0, moved);
+
+      markUnsaved();
+      // Tidak perlu re-render penuh karena SortableJS sudah update DOM
+    },
+  });
+}
 
 // =============================================================
 // === COPY BUTTONS: ACCESS CARDS ===

@@ -2616,6 +2616,9 @@ fieldset {
     gap: var(--space-2);
     flex-shrink: 0;
   }
+  .modal-backdrop {
+    top: 4rem;
+  }
 
   #view-main .detail-panel {
     min-height: 0 !important;
@@ -2675,4 +2678,47 @@ fieldset {
 #view-main .sidebar,
 #view-main .detail-panel {
   margin: 0 !important;
+}
+
+/* ── Drag handle column ── */
+.cred-col-handle {
+  width: 2rem;
+  padding: var(--space-2) var(--space-1) !important;
+}
+
+.drag-handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: grab;
+  color: var(--color-text-faint);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-interactive),
+              background var(--transition-interactive);
+}
+
+.drag-handle:hover {
+  color: var(--color-text-muted);
+  background: color-mix(in oklab, var(--color-text) 6%, transparent);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* ── Sortable states ── */
+.cred-row--ghost {
+  opacity: 0.4;
+}
+
+.cred-row--chosen {
+  background: color-mix(in oklab, var(--color-primary) 6%, var(--color-surface));
+}
+
+.cred-row--drag {
+  background: var(--color-surface-2);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
 }
