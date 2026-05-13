@@ -290,7 +290,7 @@ function openSidebar() {
 }
 
 function closeSidebar() {
-  sidebar?.classList.remove('is-open');
+  sidebar?.classList.remove('is-expanded');
   sidebarOverlay?.classList.remove('is-visible');
   btnSidebarToggle?.setAttribute('aria-expanded', 'false');
 }
@@ -717,14 +717,16 @@ function renderCustomerList(customers) {
   if (!list) return;
 
   const source = customers ?? state.vault?.customers ?? [];
+  const sorted = [...source].sort((a, b) =>
+    (a.name || '').localeCompare((b.name || ''), 'id', { sensitivity: 'base' })
+  );
 
   // Remove existing items (keep empty/no-results placeholders)
   list.querySelectorAll(':scope > li').forEach(el => el.remove());
-
-  if (emptyEl) emptyEl.hidden = source.length > 0;
+  if (emptyEl) emptyEl.hidden = sorted.length > 0;
 
   const template = document.getElementById('template-customer-item');
-  source.forEach(customer => {
+  sorted.forEach(customer => {
     const clone = template.content.cloneNode(true);
     const btn = clone.querySelector('.customer-item');
     btn.dataset.customerId = customer.id;
